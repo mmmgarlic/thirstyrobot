@@ -1,0 +1,388 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    flex-grow: 1;
+}
+
+#waterUsageText, #waterUsageBottles {
+    padding-left: 200px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#waterWall {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 20px 10px 20px 20px; /* Added padding to the left */
+    width: 25%;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: auto;
+    align-content: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    background-color: #1c1c1c; /* Ensure background color is set */
+}
+
+#waterWall img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    display: block; /* Ensure images are displayed */
+}
+
+#googleUsageText {
+    position: absolute;
+    bottom: 50px; /* Place it slightly above the links */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #a0ace0; /* Optional: Different color for Google counter */
+    text-align: center;
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+    margin-bottom: 18px; /* Small spacing below the text */
+}
+
+#chatBox {
+    width: 75%;
+    height: 100%;
+    padding: 20px;
+    background-color: #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    margin: 0;
+    align-items: flex-start;
+    position: relative;
+    justify-content: flex-start;
+}
+
+#chatMessages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+
+.chatBubble {
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 80%;
+    box-sizing: border-box;
+}
+
+.chatBubble.bot {
+    background-color: #444;
+    align-self: flex-start;
+    white-space: pre-wrap;
+}
+
+.chatBubble.user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    white-space: pre-wrap;
+}
+
+#loadingIndicator {
+    display: none;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    font-style: italic;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgba(0, 123, 255, 0.1);
+    width: auto;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: -10px;
+}
+
+.spinner {
+    border: 3px solid transparent;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    animation: spin 1s linear infinite;
+    margin-right: 5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#queryForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#queryForm textarea {
+    width: 90%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: vertical;
+    vertical-align: top;
+    line-height: 1.4;
+    color: white;
+    background-color: #444;
+}
+
+#queryForm button {
+    width: 90%;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#queryForm button:hover {
+    background: #0056b3;
+}
+
+#submitBtn, #resetBtn {
+  background-color: #ccda69;
+  border: none;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.warning {
+    font-weight: bold;
+    color: #f44336;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.warning b {
+    color: #ff5722;
+}
+
+.chatBubble.bot ul {
+    padding-left: 20px;
+}
+
+.chatBubble.bot li {
+    margin: 5px 0;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2d2d2d;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-height: 70vh;
+    overflow-y: auto;
+    font-size: 12px;
+  width: 60%; /* Set the width of the pop-up */
+  max-width: 350px; /* To prevent the pop-up from getting too wide */
+}
+
+.popup a {
+    color: blue;
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+.popup a:visited {
+    color: white;
+}
+
+.popup ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    margin: 0;
+    font-size: 12px;
+}
+
+.popup li {
+    margin: 2px 0;
+    width: 48%;
+    box-sizing: border-box;
+}
+
+.fixed-links {
+    position: absolute;
+    bottom: 10px; /* Position links at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    gap: 15px; /* Space between the links */
+}
+
+.fixed-links .popup-link {
+    color: lightgrey; /* Text color */
+    text-decoration: underline; /* Underlined text */
+    padding: 5px 10px; /* Padding around text */
+    font-size: 14px; /* Text size */
+    cursor: pointer; /* Pointer on hover */
+    text-align: center; /* Center-align text */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+}
+
+.fixed-links .popup-link:hover {
+    color: #888; /* Color change on hover */
+}
+
+.fixed-links .popup-link:visited {
+    color: lightgrey; /* Ensure visited links remain lightgrey */
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: lightgrey;
+    font-size: 20px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#waterUsageBottles {
+    color: lightgrey;
+    font-size: 0.8rem;
+    text-align: left;
+    padding-left: 200px;
+    font-size: 0.8rem;
+    color: lightgrey;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reduce base font size */
+    }
+
+    .header h1 {
+        font-size: 1.5rem; /* Smaller header text */
+    }
+
+    #chatBox {
+        padding: 10px; /* Reduce padding */
+    }
+
+    .chatBubble {
+        padding: 8px; /* Smaller padding */
+        font-size: 0.9rem; /* Smaller text */
+    }
+
+    .chatBubble.bot, .chatBubble.user {
+        max-width: 90%; /* Reduce bubble width */
+    }
+
+    #queryForm textarea {
+        min-height: 60px; /* Smaller textarea height */
+        font-size: 12px; /* Smaller font size */
+    }
+
+   #googleUsageText {
+    bottom: 100px; /* Adjust the bottom position on mobile to move it higher */
+    font-size: 14px; /* Increase font size for readability */
+    }
+
+    #queryForm button {
+        font-size: 12px; /* Smaller button text */
+        padding: 8px 15px; /* Adjust padding */
+    }
+
+    .fixed-links {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center-align the links */
+        gap: 10px; /* Add spacing between links */
+    }
+
+    .popup {
+        width: 90%; /* Slightly wider on mobile for usability */
+        max-height: 60vh; /* Reduce height for mobile */
+        font-size: 12px; /* Smaller popup text */
+    }
+
+        #waterUsageText, #waterUsageBottles {
+        max-width: 200px; /* Adjust max width for mobile */
+    }
+}
+
+        .top-left-link {
+            position: absolute;
+            top: 1.6rem;
+            left: 1.6rem;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: yellow;
+            text-decoration: underline;
+        }
+
+        .top-left-link:hover {
+            text-decoration: none;
+        }
