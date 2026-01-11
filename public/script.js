@@ -138,7 +138,7 @@ function addWaterImage(percentage) {
     waterImageContainer.classList.add('bottle-image');
 
     const waterImage = document.createElement('img');
-    const imageUrl = 'https://cdn.glitch.global/ce1b315c-fc4f-47ac-a928-221bfab9854e/bottle?v=1735753658353';
+const imageUrl = '/bottle.png';
     waterImage.src = imageUrl;
     waterImage.alt = 'Water Image';
     waterImage.style.width = '60px';
